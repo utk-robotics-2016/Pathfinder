@@ -64,8 +64,8 @@ class TrajectoryInfo:
 
 class TrajectoryCandidate:
     def __init__(self):
-        self.saptr = Spline()
-        self.laptr = 0.0
+        self.spline_list = []
+        self.length_list = []
         self.total_length = 0.0
         self.length = 0
         self.path_length = 0
