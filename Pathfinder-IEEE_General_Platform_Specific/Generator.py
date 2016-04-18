@@ -1,4 +1,4 @@
-from Structs.TrajectoryCandidate import TrajectoryCandidate
+from Structs.Trajectory import Trajectory
 from Spline_Generator import Spline_Generator
 from Spline_Generator import FitType
 from TrajectoryPlanner import TrajectoryPlanner
@@ -11,8 +11,8 @@ class Pathfinder_Generator:
         self.config = config
         self.fit = Spline_Generator(fit_type)
         self.planner = TrajectoryPlanner(config)
-        self.candidate = TrajectoryCandidate()
-        self.candidate.length = self.planner.trajectory_length
+        self.trajectory = Trajectory()
+        self.trajectory.length = self.planner.trajectory_length
         self.spline_utils = SplineUtils()
 
     def prepare(self):
@@ -23,26 +23,26 @@ class Pathfinder_Generator:
         for i in range(len(self.path) - 1):
             s = self.fit(self.path[i], self.path[i + 1])
             dist = self.spline_utils.get_arc_length(s, self.config.sample_count)
-            self.candidate.spline_list.append(s)
-            self.candidate.length_list.append(dist)
+            self.trajectory.spline_list.append(s)
+            self.trajectory.length_list.append(dist)
             total_length = total_length + dist
 
         self.config.src_theta = self.path[0].angle
         self.config.dest_theta = self.path[0].angle
 
-        self.candidate.total_length = total_length
-        self.candidate.path_length = len(self.path)
-        self.candidate.config = self.config
+        self.trajectory.total_length = total_length
+        self.trajectory.path_length = len(self.path)
+        self.trajectory.config = self.config
 
         return 0
 
     def generate(self):
-        trajectory_length = self.candidate.length
-        path_length = self.candidate.path_length
+        trajectory_length = self.trajectory.length
+        path_length = self.trajectory.path_length
 
-        splines = self.candidate.spline_list
+        splines = self.trajectory.spline_list
 
-        spline_lengths = self.candidate.length_list
+        spline_lengths = self.trajectory.length_list
 
         segments = self.planner.create()
 

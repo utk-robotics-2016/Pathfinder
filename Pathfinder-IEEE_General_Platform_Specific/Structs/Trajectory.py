@@ -2,7 +2,7 @@ from TrajectoryInfo import TrajectoryInfo
 from TragectoryCondig import TrajectoryConfig
 
 
-class TrajectoryCandidate:
+class Trajectory:
     def __init__(self):
         self.spline_list = []
         self.length_list = []
