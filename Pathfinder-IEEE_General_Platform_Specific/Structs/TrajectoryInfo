@@ -1,0 +1,9 @@
+class TrajectoryInfo:
+    def __init__(self):
+        self.filter1 = 0.0
+        self.filter2 = 0.0
+        self.length = 0
+        self.dt = 0.0
+        self.u = 0.0
+        self.v = 0.0
+        self.impulse = 0.0

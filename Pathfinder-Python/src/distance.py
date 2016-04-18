@@ -37,7 +37,7 @@ def path_finder_follow_distance2(c, follower, s, trajectory_length, distance):
         follower.last_error = error
         follower.heading = s.heading
         follower.output = calculated_value
-        follower.segement = follower.segment + 1
+        follower.segment = follower.segment + 1
         return calculated_value
     else:
         follower.finished = 1

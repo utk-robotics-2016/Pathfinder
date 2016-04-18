@@ -35,4 +35,4 @@ def pathfinder_modify_tank(original, length, left_traj, right_traj, wheelbase_wi
             right.jerk = (right.acceleration - last.acceleration) / seg.dt
 
         left_traj.append(left)
-        right_traj[i].append(right)
+        right_traj.append(right)
