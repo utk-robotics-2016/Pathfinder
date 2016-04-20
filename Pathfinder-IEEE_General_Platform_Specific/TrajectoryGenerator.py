@@ -5,7 +5,7 @@ from TrajectoryPlanner import TrajectoryPlanner
 from SplineUtils import SplineUtils
 
 
-class Pathfinder_Generator:
+class TrajectoryGenerator:
     def __init__(self, path, config, fit_type=FitType.FIT_HERMITE_CUBIC):
         self.path = path
         self.config = config
@@ -53,8 +53,7 @@ class Pathfinder_Generator:
         for i in range(trajectory_length):
             pos = segments[i].position
 
-            found = 0
-            while not found:
+            while True:
                 pos_relative = pos - spline_pos_initial
                 if(pos_relative <= spline_lengths[i]):
                     si = splines[spline_i]
@@ -63,7 +62,7 @@ class Pathfinder_Generator:
                     segments[i].heading = self.spline_utils.get_angle(si, percentage)
                     segments[i].x = coords.x
                     segments[i].y = coords.y
-                    found = 1
+                    break
                 elif spline_i < path_length - 2:
                     spline_complete = spline_complete + spline_lengths[spline_i]
                     spline_pos_initial = spline_complete
@@ -74,6 +73,6 @@ class Pathfinder_Generator:
                     coords = self.spline_utils.get_coords(si, 1.0)
                     segments[i].x = coords.x
                     segments[i].y = coords.y
-                    found = 1
+                    break
 
         return segments
