@@ -1,3 +1,6 @@
+import copy
+
+
 class SwerveModifier:
     def __init__(self, original, wheelbase_width, wheelbase_depth):
         self.original = original
@@ -13,10 +16,10 @@ class SwerveModifier:
 
         for i in range(len(self.original)):
             seg = self.original[i]
-            fl = seg.deepcopy()
-            fr = seg.deepcopy()
-            bl = seg.deepcopy()
-            br = seg.deepcopy()
+            fl = copy.deepcopy(seg)
+            fr = copy.deepcopy(seg)
+            bl = copy.deepcopy(seg)
+            br = copy.deepcopy(seg)
 
             fl.x = seg.x - self.wheelbase_width / 2
             fl.y = seg.y + self.wheelbase_depth / 2

@@ -1,11 +1,11 @@
-from struct import Coord
 import math
+from Structs.Coord import Coord
 from mathutil import bound_radians
 
 
 class SplineUtils:
     def get_coords(self, s, percentage):
-        percentage = math.max(math.min(percentage, 1), 0)
+        percentage = max(min(percentage, 1), 0)
         x = percentage * s.knot_distance
         y = (s.a * x + s.b) * (x * x * x * x) + (s.c * x + s.d) * (x * x) + s.e * x
 
@@ -24,7 +24,7 @@ class SplineUtils:
         return (5 * a * x + 4 * b) * (x * x * x) + (3 * c * x + 2 * d) * x + e
 
     def get_angle(self, s, percentage):
-        return bound_radians(math.atan(self.get_spline_deriv(s, percentage)) + s.angle_offset)
+        return bound_radians(math.atan(self.get_deriv(s, percentage)) + s.angle_offset)
 
     def get_arc_length(self, s, sample_count):
         sample_count_d = float(sample_count)

@@ -1,20 +1,22 @@
-from struct import TrajectoryInfo
-from struct import Segment
+from Structs.TrajectoryInfo import TrajectoryInfo
+from Structs.Segment import Segment
 import math
 
 
 class TrajectoryPlanner:
     def __init__(self, config):
         self.config = config
-        self.prepare()
+        self.info = None
 
     def prepare(self):
         max_a2 = self.config.max_a * self.config.max_a
         max_j2 = self.config.max_j * self.config.max_j
 
-        checked_max_v = math.min(self.config.max_v, (-max_a2 + math.sqrt(max_a2 + 4 * max_j2 / (2 * self.config.max_j))))
+        checked_max_v = min(self.config.max_v, (-max_a2 + math.sqrt(max_a2 * max_a2 + 4 * (max_j2 * self.config.max_a * self.config.dest_pos))) / (2 * self.config.max_j))
 
-        filter1 = int(math.ceil(checked_max_v / self.config.max_a))
+        print checked_max_v
+
+        filter1 = int(math.ceil((checked_max_v / self.config.max_a) / self.config.dt))
         filter2 = int(math.ceil((self.config.max_a / self.config.max_j) / self.config.dt))
 
         impulse = (self.config.dest_pos / checked_max_v) / self.config.dt
@@ -27,26 +29,30 @@ class TrajectoryPlanner:
 
         d_theta = self.config.dest_theta - self.config.src_theta
         for i in range(self.info.length):
-            segments[i].heading = self.config.src_theta + d_theta * segments[i].position / (segments[self.info.length - 1].position)
+            #if segments[i].position == 0.0 and segments[self.info.length - 1].position == 0.0:
+            #    segments[i].heading = self.config.src_theta
+            #else:
+                segments[i].heading = self.config.src_theta + d_theta * segments[i].position / (segments[self.info.length - 1].position)
 
         return segments
 
     def plan_fromSecondOrderFilter(self):
-        last_section = Segment(self.info.dt, 0, 0, 0, self.info.u, 0, 0)
+        last_section = Segment(self.info.dt, 0.0, 0.0, 0.0, self.info.u, 0.0, 0.0, 0.0)
 
         f1_buffer = []
-        f1_buffer.append((self.info.u / self.info.v) * self.info.filter_1_l)
+        f1_buffer.append((self.info.u / self.info.v) * self.info.filter1)
 
         segments = []
 
-        for i in range(len):
-            input = math.min(self.info.impulse, 1)
+        impulse = self.info.impulse
+        for i in range(self.info.length):
+            input_ = min(impulse, 1)
 
-            if input < 1:
-                input = input - 1
-                self.info.impulse = 0
+            if input_ < 1:
+                input_ = input_ - 1
+                impulse = 0
             else:
-                self.info.impulse = self.info.impulse - input
+                impulse = impulse - input_
 
             f1_last = 0.0
             if i > 0:
@@ -54,31 +60,26 @@ class TrajectoryPlanner:
             else:
                 f1_last = f1_buffer[0]
 
-            if len(f1_buffer) > i + 1:
-                f1_buffer.append(math.max(0.0, math.min(self.info.filter_1_l, f1_last + input)))
-            else:
-                f1_buffer[i] = math.max(0.0, math.min(self.info.filter_1_l, f1_last + input))
+            f1_buffer.append(max(0.0, min(self.info.filter1, f1_last + input_)))
 
             f2 = 0.0
 
-            for j in range(self.info.filter_2_l):
+            for j in range(self.info.filter2):
                 if i - j < 0:
                     break
                 f2 = f2 + f1_buffer[i - j]
 
-            f2 = f2 / self.info.filter_1_l
+            f2 = f2 / self.info.filter1
 
-            seg = Segment()
-            seg.velocity = f2 / self.info.filter_2_l * self.info.v
-            seg.position = (last_section.velocity + seg.velocity) / 2.0 * self.info.dt + last_section.position
+            seg = Segment(dt=self.info.dt, x=0.0, y=0.0, position=0.0, velocity=0.0, acceleration=0.0, jerk=0.0, heading=0.0)
+            seg.velocity = f2 / self.info.filter2 * self.info.v
+            seg.position = (last_section.velocity + seg.velocity) / 2.0 * seg.dt + last_section.position
             seg.x = seg.position
-            seg.y = 0
-            seg.acceleration = (seg.velocity - last_section.velocity) / self.info.dt
-            seg.jerk = (seg.acceleration - last_section.acceleration) / self.info.dt
-            seg.dt = self.info.dt
+            seg.y = 0.0
+            seg.acceleration = (seg.velocity - last_section.velocity) / seg.dt
+            seg.jerk = (seg.acceleration - last_section.acceleration) / seg.dt
 
             segments.append(seg)
-
-        last_section = seg
+            last_section = seg
 
         return segments

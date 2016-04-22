@@ -1,5 +1,5 @@
 import math
-
+import copy
 
 class TankModifier:
     def __init__(self, original, wheelbase_width):
@@ -15,8 +15,8 @@ class TankModifier:
 
         for i in range(len(self.original)):
             seg = self.original[i]
-            left = seg.deepcopy()
-            right = seg.deepcopy()
+            left = copy.deepcopy(seg)
+            right = copy.deepcopy(seg)
 
             cos_angle = math.cos(seg.heading)
             sin_angle = math.cos(seg.heading)

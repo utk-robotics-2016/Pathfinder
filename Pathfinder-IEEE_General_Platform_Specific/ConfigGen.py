@@ -2,9 +2,16 @@ from Tkinter import *
 from tkFileDialog import asksaveasfilename
 import json
 
-def is_number(s):
+def is_float(s):
     try:
         float(s)
+        return True
+    except ValueError:
+        return False
+
+def is_int(s):
+    try:
+        int(s)
         return True
     except ValueError:
         return False
@@ -68,49 +75,49 @@ class Application(Frame):
 
         error = False
         errorMessage = ""
-        if not is_number(sampleCount):
+        if not is_int(sampleCount):
             error = True
             errorMessage = "Sample Count needs to have a number\n"
             self.sampleCountEntry['bg'] = 'red'
         else:
             self.sampleCountEntry['bg'] = 'white'
 
-        if not is_number(deltaTime):
+        if not is_float(deltaTime):
             error = True
             errorMessage = errorMessage + "Delta Time needs to have a number\n"
             self.deltaTimeEntry['bg'] = 'red'
         else:
             self.deltaTimeEntry['bg'] = 'white'
 
-        if not is_number(maxVelocity):
+        if not is_float(maxVelocity):
             error = True
             errorMessage = errorMessage + "Max Velocity Count needs to have a number\n"
             self.maxVelocityEntry['bg'] = 'red'
         else:
             self.maxVelocityEntry['bg'] = 'white'
 
-        if not is_number(maxAcceleration):
+        if not is_float(maxAcceleration):
             error = True
             errorMessage = errorMessage + "Max Acceleration needs to have a number\n"
             self.maxAccelerationEnry['bg'] = 'red'
         else:
             self.maxAccelerationEnry['bg'] = 'white'
 
-        if not is_number(maxJerk):
+        if not is_float(maxJerk):
             error = True
             errorMessage = errorMessage + "Max Jerk needs to have a number\n"
             self.maxJerkEntry['bg'] = 'red'
         else:
             self.maxJerkEntry['bg'] = 'white'
 
-        if not is_number(wheelbaseWidth):
+        if not is_float(wheelbaseWidth):
             error = True
             errorMessage = errorMessage + "Wheelbase Width needs to have a number\n"
             self.wheelbaseWidthEntry['bg'] = 'red'
         else:
             self.wheelbaseWidthEntry['bg'] = 'white'
 
-        if not is_number(wheelbaseLength):
+        if not is_float(wheelbaseLength):
             error = True
             errorMessage = errorMessage + "Wheelbase Length needs to have a number\n"
             self.wheelbaseLengthEntry['bg'] = 'red'
@@ -122,7 +129,7 @@ class Application(Frame):
             return
 
         output = dict()
-        output['sample_count'] = float(sampleCount)
+        output['sample_count'] = int(sampleCount)
         output['delta_time'] = float(deltaTime)
         output['max_velocity'] = float(maxVelocity)
         output['max_acceleration'] = float(maxAcceleration)

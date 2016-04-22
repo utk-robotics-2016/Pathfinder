@@ -1,7 +1,7 @@
 import math
 from mathutil import bound_radians
 from enum import Enum
-from Struct.Spline import Spline
+from Structs.Spline import Spline
 
 
 class FitType(Enum):
@@ -9,7 +9,7 @@ class FitType(Enum):
     QUINTIC = 1
 
 
-class Spline_Generator:
+class SplineGenerator:
     def __init__(self, fit_type=FitType.CUBIC):
         self.fit_type = fit_type
 

@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 import cv2
 import math
 import json
+import csv
 
 
 def is_number(s):
@@ -33,9 +34,6 @@ class Application(Frame):
         self.first_click = True
 
     def createWidgets(self):
-        #self.image = Label(self.root)
-        #self.image.grid(row=0, column=0)
-
         self.widthLabel = Label(self.root, text="Course Width (in):")
         self.widthLabel.grid(row=0, column=1)
         self.widthEntry = Entry(self.root)
@@ -179,16 +177,20 @@ class Application(Frame):
             self.waypoints[i]['y'] = float(courseLength) * self.waypoints[i]['y'] / float(self.imageLength) - first_y
 
         options = {
-                'defaultextension': '.json',
-                'filetypes': [('json files', '.json')],
-                'initialfile': 'waypoints.json',
+                'defaultextension': '.csv',
+                'filetypes': [('CSV', '.csv')],
+                'initialfile': 'waypoints.csv',
                 'initialdir': '.',
                 'parent': self.root
                 }
 
         filename = asksaveasfilename(**options)
-        f = open(filename, "w")
-        f.write(json.dumps(self.waypoints, sort_keys=True, indent=4, separators=(',', ': ')))
+        with open(filename, 'w') as csvfile:
+            fieldnames = ['x', 'y', 'theta']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            for waypoint in self.waypoints:
+                writer.writerow({'x': waypoint['x'], 'y': waypoint['y'], 'theta': waypoint['theta']})
 
     def clearWaypoints(self):
         self.thetaEntry['bg'] = "white"

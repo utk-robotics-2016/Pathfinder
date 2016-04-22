@@ -1,12 +1,23 @@
 #includes
 import argparse
 import json
+import csv
 import sys
-from Structs import TrajectoryConfig
-from Structs import Waypoint
+from Structs.TrajectoryConfig import TrajectoryConfig
+from Structs.Waypoint import Waypoint
+from SplineGenerator import FitType
 from TrajectoryGenerator import TrajectoryGenerator
 from SwerveModifier import SwerveModifier
 from TankModifier import TankModifier
+
+def write_trajectory(file_, segments):
+    fieldnames = ['dt', 'x', 'y', 'position', 'velocity', 'acceleration', 'jerk', 'heading']
+    writer = csv.DictWriter(file_, fieldnames=fieldnames)
+    writer.writeheader()
+    for segment in segments:
+        print "%f %f %f %f %f %f %f %f" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading)
+        writer.writerow({'dt': segment.dt, 'x': segment.x, 'y': segment.y, 'position': segment.position, 'velocity': segment.velocity, 'acceleration': segment.acceleration, 'jerk': segment.jerk, 'heading': segment.heading})
+
 
 # Collect command line arguments
 ap = argparse.ArgumentParser()
@@ -17,35 +28,19 @@ args = vars(ap.parse_args())
 
 # Set up the input and out files
 if args['config'] is not None:
-    try:
-        config_file = open(args['config'], "r")
-    except:
-        print "Config file: %s does not exist" % args['config']
-        sys.exit()
+    config_file = open(args['config'], "r")
 else:
-    try:
-        config_file = open("pathplanning_robot_config.json", "r")
-    except:
-        print "Config file: pathplanning_robot_config.json does not exist"
-        sys.exit()
+    config_file = open("pathplanning_robot_config.json", "r")
 
 if args['waypoints'] is not None:
-    try:
-        waypoints_file = open(args['waypoints'], "r")
-    except:
-        print "Waypoints file: %s does not exist" % args['waypoints']
-        sys.exit()
+    waypoints_file = open(args['waypoints'])
 else:
-    try:
-        waypoints_file = open("waypoints.json", "r")
-    except:
-        print "Waypoints file: waypoints.json does not exist"
-        sys.exit()
+    waypoints_file = open("waypoints.csv")
 
 if args['output'] is not None:
     output_file = open(args['output'], "w")
 else:
-    output_file = open("trajectory.json", "w")
+    output_file = open("trajectory.csv", "w")
 
 # Read in json
 file_text = ""
@@ -57,31 +52,23 @@ config = TrajectoryConfig()
 config.max_v = config_json['max_velocity']
 config.max_a = config_json['max_acceleration']
 config.max_j = config_json['max_jerk']
-config.dt = config_json['dt']
+config.dt = config_json['delta_time']
 config.sample_count = config_json['sample_count']
 
-file_text = ""
-for line in waypoints_file:
-    file_text = file_text + line
-waypoints_json = json.loads(file_text)
-
 waypoints = []
+reader = csv.DictReader(waypoints_file)
+for row in reader:
+    waypoints.append(Waypoint(float(row['x']), float(row['y']), float(row['theta'])))
 
-for json_item in waypoints_json:
-    waypoints.append(Waypoint(json_item['x'], json_item['y'], json_item['theta']))
-
-generator = TrajectoryGenerator(waypoints, config)
-generator.prepare()
+generator = TrajectoryGenerator(waypoints, config)#, fit_type=FitType.QUINTIC)
 trajectory_segments = generator.generate()
 
-for segment in trajectory_segments:
-    print "%f %f %f %f %f %f %f %f" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading)
-    output_file.write("%f %f %f %f %f %f %f %f\n" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading))
+write_trajectory(output_file, trajectory_segments)
 
 drivetrain = config_json['drivetrain']
 
-if drivetrain == 'tank':
-    tankModifier = TankModifier(trajectory_segments, config_file['wheelbase_width'])
+if drivetrain == 'Tank':
+    tankModifier = TankModifier(trajectory_segments, config_json['wheelbase_width'])
 
     left_segments = tankModifier.get_left_trajectory()
     right_segments = tankModifier.get_right_trajectory()
@@ -90,18 +77,13 @@ if drivetrain == 'tank':
         left_output_file = open("left_" + args['output'], "w")
         right_output_file = open("right_" + args['output'], "w")
     else:
-        left_output_file = open("left_trajectory.json", "w")
-        right_output_file = open("right_trajectory.json", "w")
+        left_output_file = open("left_trajectory.csv", "w")
+        right_output_file = open("right_trajectory.csv", "w")
 
-    for segment in left_segments:
-        print "Left: %f %f %f %f %f %f %f %f" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading)
-        left_output_file.write("%f %f %f %f %f %f %f %f\n" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading))
+    write_trajectory(left_output_file, left_segments)
+    write_trajectory(right_output_file, right_segments)
 
-    for segment in right_segments:
-        print "Right: %f %f %f %f %f %f %f %f" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading)
-        right_output_file.write("%f %f %f %f %f %f %f %f\n" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading))
-
-elif drivetrain == 'swerve':
+elif drivetrain == 'Swerve':
     swerveModifier = SwerveModifier(trajectory_segments, config_file['wheelbase_width'], config_file['wheelbase_length'])
 
     front_left_segments = swerveModifier.get_front_left_trajectory()
@@ -115,26 +97,16 @@ elif drivetrain == 'swerve':
         back_left_output_file = open("back_left_" + args['output'], "w")
         back_right_output_file = open("back_right_" + args['output'], "w")
     else:
-        front_left_output_file = open("front_left_trajectory.json", "w")
-        front_right_output_file = open("front_right_trajectory.json", "w")
-        back_left_output_file = open("back_left_trajectory.json", "w")
-        back_right_output_file = open("back_right_trajectory.json", "w")
+        front_left_output_file = open("front_left_trajectory.csv", "w")
+        front_right_output_file = open("front_right_trajectory.csv", "w")
+        back_left_output_file = open("back_left_trajectory.csv", "w")
+        back_right_output_file = open("back_right_trajectory.csv", "w")
 
-    for segment in front_left_segments:
-        print "Front Left: %f %f %f %f %f %f %f %f" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading)
-        front_left_output_file.write("%f %f %f %f %f %f %f %f\n" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading))
-
-    for segment in front_right_segments:
-        print "Front Right: %f %f %f %f %f %f %f %f" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading)
-        front_right_output_file.write("%f %f %f %f %f %f %f %f\n" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading))
-
-    for segment in back_left_segments:
-        print "Back Left: %f %f %f %f %f %f %f %f" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading)
-        back_left_output_file.write("%f %f %f %f %f %f %f %f\n" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading))
-
-    for segment in back_right_segments:
-        print "Back Right: %f %f %f %f %f %f %f %f" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading)
-        back_right_output_file.write("%f %f %f %f %f %f %f %f\n" % (segment.dt, segment.x, segment.y, segment.position, segment.velocity, segment.acceleration, segment.jerk, segment.heading))
+    write_trajectory(front_left_output_file, front_left_segments)
+    write_trajectory(front_right_output_file, front_right_segments)
+    write_trajectory(back_left_output_file, back_left_segments)
+    write_trajectory(back_right_output_file, back_right_segments)
 else:
     print "Error: Unknown drivetrain in config file"
     sys.exit()
+

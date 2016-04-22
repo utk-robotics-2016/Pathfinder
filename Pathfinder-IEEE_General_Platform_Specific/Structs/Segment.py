@@ -1,10 +1,10 @@
 class Segment:
-    def __init__(self):
-        self.dt = 0.0
-        self.x = 0.0
-        self.y = 0.0
-        self.position = 0.0
-        self.velocity = 0.0
-        self.acceleration = 0.0
-        self.jerk = 0.0
-        self.heading = 0.0
+    def __init__(self, dt, x, y, position, velocity, acceleration, jerk, heading):
+        self.dt = dt
+        self.x = x
+        self.y = y
+        self.position = position
+        self.velocity = velocity
+        self.acceleration = acceleration
+        self.jerk = jerk
+        self.heading = heading

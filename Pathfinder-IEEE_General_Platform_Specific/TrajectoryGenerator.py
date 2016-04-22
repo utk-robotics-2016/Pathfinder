@@ -1,40 +1,42 @@
 from Structs.Trajectory import Trajectory
-from Spline_Generator import Spline_Generator
-from Spline_Generator import FitType
+from SplineGenerator import SplineGenerator
+from SplineGenerator import FitType
 from TrajectoryPlanner import TrajectoryPlanner
 from SplineUtils import SplineUtils
 
 
 class TrajectoryGenerator:
-    def __init__(self, path, config, fit_type=FitType.FIT_HERMITE_CUBIC):
+    def __init__(self, path, config, fit_type=FitType.CUBIC):
         self.path = path
         self.config = config
-        self.fit = Spline_Generator(fit_type)
-        self.planner = TrajectoryPlanner(config)
+        self.fit = SplineGenerator(fit_type)
         self.trajectory = Trajectory()
-        self.trajectory.length = self.planner.trajectory_length
         self.spline_utils = SplineUtils()
+        self.planner = TrajectoryPlanner(config)
+        self.prepare()
 
     def prepare(self):
         if(len(self.path) < 2):
-            return -1
+            print "Error: TrajectoryGenerator preparation failed: path length is less than 2"
+            return
 
-        total_length = 0
+        self.trajectory.total_length = 0
         for i in range(len(self.path) - 1):
-            s = self.fit(self.path[i], self.path[i + 1])
+            s = self.fit.fit(self.path[i], self.path[i + 1])
             dist = self.spline_utils.get_arc_length(s, self.config.sample_count)
             self.trajectory.spline_list.append(s)
             self.trajectory.length_list.append(dist)
-            total_length = total_length + dist
+            self.trajectory.total_length = self.trajectory.total_length + dist
 
+        self.config.dest_pos = self.trajectory.total_length
         self.config.src_theta = self.path[0].angle
         self.config.dest_theta = self.path[0].angle
 
-        self.trajectory.total_length = total_length
+        self.planner.prepare()
+        self.trajectory.length = self.planner.info.length
+
         self.trajectory.path_length = len(self.path)
         self.trajectory.config = self.config
-
-        return 0
 
     def generate(self):
         trajectory_length = self.trajectory.length
@@ -52,10 +54,9 @@ class TrajectoryGenerator:
 
         for i in range(trajectory_length):
             pos = segments[i].position
-
             while True:
                 pos_relative = pos - spline_pos_initial
-                if(pos_relative <= spline_lengths[i]):
+                if(pos_relative <= spline_lengths[spline_i]):
                     si = splines[spline_i]
                     percentage = self.spline_utils.get_progress_for_distance(si, pos_relative, self.config.sample_count)
                     coords = self.spline_utils.get_coords(si, percentage)
