@@ -4,7 +4,6 @@ class DistanceFollower:
         self.heading = 0.0
         self.output = 0.0
         self.segment = 0
-        self.finished = 0
         self.kp = 0.0
         self.ki = 0.0
         self.kd = 0.0

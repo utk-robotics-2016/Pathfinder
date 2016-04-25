@@ -14,14 +14,6 @@ from SwerveModifier import SwerveModifier
 from TankModifier import TankModifier
 
 
-def is_number(s):
-    try:
-        float(s)
-        return True
-    except ValueError:
-        return False
-
-
 class DisplayWaypoint:
     def __init__(self, x, y, theta, root, index, list_, redraw):
         self.x = DoubleVar()
@@ -37,24 +29,24 @@ class DisplayWaypoint:
         self.theta.trace('w', self.updatePoint)
 
         self.xEntry = Entry(root, textvariable=self.x)
-        self.xEntry.grid(row=17 + index, column=1)
+        self.xEntry.grid(row=18 + index, column=1)
         self.yEntry = Entry(root, textvariable=self.y)
-        self.yEntry.grid(row=17 + index, column=2)
+        self.yEntry.grid(row=18 + index, column=2)
         self.thetaEntry = Entry(root, textvariable=self.theta)
-        self.thetaEntry.grid(row=17 + index, column=3)
+        self.thetaEntry.grid(row=18 + index, column=3)
 
         self.deleteButton = Button(root, text="-", command=self.delete)
-        self.deleteButton.grid(row=17 + index, column=4)
+        self.deleteButton.grid(row=18 + index, column=4)
 
         self.list = list_
         self.index = index
         self.redraw = redraw
 
     def changeIndex(self, index):
-        self.xEntry.grid(row=17 + index, column=1)
-        self.yEntry.grid(row=17 + index, column=2)
-        self.thetaEntry.grid(row=17 + index, column=3)
-        self.deleteButton.grid(row=17 + index, column=4)
+        self.xEntry.grid(row=18 + index, column=1)
+        self.yEntry.grid(row=18 + index, column=2)
+        self.thetaEntry.grid(row=18 + index, column=3)
+        self.deleteButton.grid(row=18 + index, column=4)
         self.index = index
 
     def updatePoint(self, *args):
@@ -170,23 +162,24 @@ class Application(Frame):
 
     def mouse_click(self, event):
 
-        courseWidth = self.courseWidth.get()
-        courseLength = self.courseLength.get()
+        error = False
+        errorMessage = ""
 
-        if not is_number(courseWidth) and not is_number(courseLength):
-            self.configError.set("Course Width is not set\nCourse Length is not set")
-            return
-        elif not is_number(courseWidth):
-            self.configError.set("Course Width is not set")
-            return
-        elif not is_number(courseLength):
-            self.configError.set("Course Length is not set")
-            return
-        else:
-            self.configError.set("")
+        try:
+            courseWidth = self.courseWidth.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Course Width needs to have a number\n"
 
-        courseWidth = float(courseWidth)
-        courseLength = float(courseLength)
+        try:
+            courseLength = self.courseLength.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Course Length needs to have a number\n"
+
+        if error:
+            self.configError.set(errorMessage)
+            return
 
         if courseWidth <= 0.0 and courseLength <= 0.0:
             self.configError.set("Course Width needs to be a positive number\nCourse Length needs to be a positive number")
@@ -208,23 +201,26 @@ class Application(Frame):
         self.updateDraw()
 
     def updateDraw(self, *args):
-        courseWidth = self.courseWidth.get()
-        courseLength = self.courseLength.get()
+        error = False
+        errorMessage = ""
 
-        if not is_number(courseWidth) and not is_number(courseLength):
-            self.configError.set("Course Width is not set\nCourse Length is not set")
-            return
-        elif not is_number(courseWidth):
-            self.configError.set("Course Width is not set")
-            return
-        elif not is_number(courseLength):
-            self.configError.set("Course Length is not set")
+        try:
+            courseWidth = self.courseWidth.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Course Width needs to have a number\n"
+
+        try:
+            courseLength = self.courseLength.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Course Length needs to have a number\n"
+
+        if error:
+            self.configError.set(errorMessage)
             return
         else:
             self.configError.set("")
-
-        courseWidth = float(courseWidth)
-        courseLength = float(courseLength)
 
         if courseWidth <= 0.0 and courseLength <= 0.0:
             self.configError.set("Course Width needs to be a positive number\nCourse Length needs to be a positive number")
@@ -256,10 +252,10 @@ class Application(Frame):
                         cv2.line(self.opencv_image_marked, p1, p2,  (0, 0, 255), 2)
                     except:
                         pass
-                self.importWaypointsButton.grid(row=19 + len(self.waypoints), column=1, columnspan=3)
+                self.importWaypointsButton.grid(row=20 + len(self.waypoints), column=1, columnspan=3)
                 if len(self.waypoints) > 0:
-                    self.clearWaypointsButton.grid(row=18 + len(self.waypoints), column=1, columnspan=3)
-                    self.exportWaypointsButton.grid(row=20 + len(self.waypoints), column=1, columnspan=3)
+                    self.clearWaypointsButton.grid(row=19 + len(self.waypoints), column=1, columnspan=3)
+                    self.exportWaypointsButton.grid(row=21 + len(self.waypoints), column=1, columnspan=3)
             self.updateTrajectory()
             if self.viewTrajectory.get():
                 for i in range(len(self.trajectory_segments) - 1):
@@ -348,19 +344,78 @@ class Application(Frame):
         options = {'defaultextension': '.json', 'filetypes': [('JSON', '.json')], 'initialfile': 'pathfinder_config.json', 'initialdir': '.', 'parent': self.root}
         filename = asksaveasfilename(**options)
         if(filename != ""):
+            error = False
+            errorMessage = ""
+
             try:
-                config = dict({'course_width': self.courseWidth.get(),
-                               'course_length': self.courseLength.get(),
-                               'max_velocity': self.maxVelocity.get(),
-                               'max_acceleration': self.maxAcceleration.get(),
-                               'max_jerk': self.maxJerk.get(),
-                               'sample_count': self.sampleCount.get(),
-                               'time_step': self.timeStep.get(),
-                               'wheelbase_width': self.wheelbaseWidth.get(),
-                               'wheelbase_length': self.wheelbaseLength.get()})
+                courseWidth = self.courseWidth.get()
             except:
-                self.configError.set("One of the config items is not a number")
+                error = True
+                errorMessage = errorMessage + "Course Width needs to have a number\n"
+
+            try:
+                courseLength = self.courseLength.get()
+            except:
+                error = True
+                errorMessage = errorMessage + "Course Length needs to have a number\n"
+
+            try:
+                maxVelocity = self.maxVelocity.get()
+            except:
+                error = True
+                errorMessage = errorMessage + "Max Velocity Count needs to have a number\n"
+
+            try:
+                maxAcceleration = self.maxAcceleration.get()
+            except:
+                error = True
+                errorMessage = errorMessage + "Max Acceleration needs to have a number\n"
+
+            try:
+                maxJerk = self.maxJerk.get()
+            except:
+                error = True
+                errorMessage = errorMessage + "Max Jerk needs to have a number\n"
+
+            try:
+                sampleCount = self.sampleCount.get()
+            except:
+                error = True
+                errorMessage = errorMessage + "Sample Count needs to have a number\n"
+
+            try:
+                timeStep = self.timeStep.get()
+            except:
+                error = True
+                errorMessage = errorMessage + "Time Step needs to have a number\n"
+
+            try:
+                wheelbaseWidth = self.wheelbaseWidth.get()
+            except:
+                error = True
+                errorMessage = errorMessage + "Wheelbase Width needs to have a number\n"
+
+            try:
+                wheelbaseLength = self.wheelbaseLength.get()
+            except:
+                error = True
+                errorMessage = errorMessage + "Wheelbase Length needs to have a number\n"
+
+            if error:
+                self.configError.set(errorMessage)
                 return
+            else:
+                self.configError.set("")
+
+            config = dict({'course_width': courseWidth,
+                           'course_length': courseLength,
+                           'max_velocity': self.maxVelocity,
+                           'max_acceleration': maxAcceleration,
+                           'max_jerk': maxJerk,
+                           'sample_count': sampleCount,
+                           'time_step': timeStep,
+                           'wheelbase_width': wheelbaseWidth,
+                           'wheelbase_length': wheelbaseLength})
 
             configFile = open(filename, 'w')
             configFile.write(json.dumps(config, sort_keys=True, indent=4, separators=(',', ': ')))
@@ -417,34 +472,90 @@ class Application(Frame):
         self.swerve_back_right_segments = []
         if len(self.waypoints) == 0:
             return
+
+        error = False
+        errorMessage = ""
+
         try:
-            trajectoryConfig = TrajectoryConfig()
-            trajectoryConfig.max_v = self.maxVelocity.get()
-            trajectoryConfig.max_a = self.maxAcceleration.get()
-            trajectoryConfig.max_j = self.maxJerk.get()
-            trajectoryConfig.dt = self.timeStep.get()
-            trajectoryConfig.sample_count = self.sampleCount.get()
-
-            trajectoryWaypoints = []
-            for displayWaypoint in self.waypoints:
-                trajectoryWaypoints.append(Waypoint(displayWaypoint.x.get(), displayWaypoint.y.get(), displayWaypoint.theta.get()))
-
-            generator = TrajectoryGenerator(trajectoryWaypoints, trajectoryConfig)
-            self.trajectory_segments = generator.generate()
-
-            tankModifier = TankModifier(self.trajectory_segments, self.wheelbaseWidth.get())
-            self.tank_left_segments = tankModifier.get_left_trajectory()
-            self.tank_right_segments = tankModifier.get_right_trajectory()
-
-            swerveModifier = SwerveModifier(self.trajectory_segments, self.wheelbaseWidth.get(), self.wheelbaseLength.get())
-            self.swerve_front_left_segments = swerveModifier.get_front_left_trajectory()
-            self.swerve_front_right_segments = swerveModifier.get_front_right_trajectory()
-            self.swerve_back_left_segments = swerveModifier.get_back_left_trajectory()
-            self.swerve_back_right_segments = swerveModifier.get_back_right_trajectory()
-
+            maxVelocity = self.maxVelocity.get()
         except:
-            print "Unexpected error:", sys.exc_info()[0]
+            error = True
+            errorMessage = errorMessage + "Max Velocity Count needs to have a number\n"
+
+        try:
+            maxAcceleration = self.maxAcceleration.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Max Acceleration needs to have a number\n"
+
+        try:
+            maxJerk = self.maxJerk.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Max Jerk needs to have a number\n"
+
+        try:
+            sampleCount = self.sampleCount.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Sample Count needs to have a number\n"
+
+        try:
+            timeStep = self.timeStep.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Time Step needs to have a number\n"
+
+        if error:
+            self.configError.set(errorMessage)
             return
+        else:
+            self.configError.set("")
+
+        trajectoryConfig = TrajectoryConfig()
+        trajectoryConfig.max_v = maxVelocity
+        trajectoryConfig.max_a = maxAcceleration
+        trajectoryConfig.max_j = maxJerk
+        trajectoryConfig.dt = timeStep
+        trajectoryConfig.sample_count = sampleCount
+
+
+        trajectoryWaypoints = []
+        for displayWaypoint in self.waypoints:
+            trajectoryWaypoints.append(Waypoint(displayWaypoint.x.get(), displayWaypoint.y.get(), displayWaypoint.theta.get()))
+        
+        generator = TrajectoryGenerator(trajectoryWaypoints, trajectoryConfig)
+        self.trajectory_segments = generator.generate()
+
+        errorMessage = ""
+
+        try:
+            wheelbaseWidth = self.wheelbaseWidth.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Wheelbase Width needs to have a number\n"
+
+        try:
+            wheelbaseLength = self.wheelbaseLength.get()
+        except:
+            error = True
+            errorMessage = errorMessage + "Wheelbase Length needs to have a number\n"
+
+        if error:
+            self.configError.set(errorMessage)
+            return
+        else:
+            self.configError.set("")
+
+        tankModifier = TankModifier(self.trajectory_segments, self.wheelbaseWidth.get())
+        self.tank_left_segments = tankModifier.get_left_trajectory()
+        self.tank_right_segments = tankModifier.get_right_trajectory()
+
+        swerveModifier = SwerveModifier(self.trajectory_segments, self.wheelbaseWidth.get(), self.wheelbaseLength.get())
+        self.swerve_front_left_segments = swerveModifier.get_front_left_trajectory()
+        self.swerve_front_right_segments = swerveModifier.get_front_right_trajectory()
+        self.swerve_back_left_segments = swerveModifier.get_back_left_trajectory()
+        self.swerve_back_right_segments = swerveModifier.get_back_right_trajectory()
 
     def write_trajectory(self, file_, segments):
         fieldnames = ['dt', 'x', 'y', 'position', 'velocity', 'acceleration', 'jerk', 'heading']
@@ -537,22 +648,28 @@ class Application(Frame):
         self.wheelbaseLength.set(0.0)
         Entry(self.root, textvariable=self.wheelbaseLength).grid(row=9, column=2)
 
+        Label(self.root, text="Spline Type").grid(row=10, column=1)
+        self.splineType = StringVar()
+        self.splineType.set("Cubic")
+        self.splineType.trace('w', self.updateDraw)
+        OptionMenu(self.root, self.splineType, "Cubic", "Quintic").grid(row=10, column=2)
+
         self.configError = StringVar()
         self.configError.set("")
-        Label(self.root, textvariable=self.configError, fg="red").grid(row=10, column=1, columnspan=2)
+        Label(self.root, textvariable=self.configError, fg="red").grid(row=11, column=1, columnspan=2)
 
-        Button(self.root, text="Import Config", command=self.importConfig).grid(row=11, column=1, columnspan=2)
-        Button(self.root, text="Export Config", command=self.exportConfig).grid(row=12, column=1, columnspan=2)
+        Button(self.root, text="Import Config", command=self.importConfig).grid(row=12, column=1, columnspan=2)
+        Button(self.root, text="Export Config", command=self.exportConfig).grid(row=13, column=1, columnspan=2)
 
-        Label(self.root, text="Waypoints", font=("Helvetica", 20)).grid(row=15, column=1, columnspan=2)
+        Label(self.root, text="Waypoints", font=("Helvetica", 20)).grid(row=16, column=1, columnspan=2)
 
-        Label(self.root, text="X (in)").grid(row=16, column=1)
-        Label(self.root, text="Y (in)").grid(row=16, column=2)
-        Label(self.root, text="Heading (degrees)").grid(row=16, column=3)
+        Label(self.root, text="X (in)").grid(row=17, column=1)
+        Label(self.root, text="Y (in)").grid(row=17, column=2)
+        Label(self.root, text="Heading (degrees)").grid(row=17, column=3)
 
         self.clearWaypointsButton = Button(self.root, text="Clear Waypoints", command=self.clearWaypoints)
         self.importWaypointsButton = Button(self.root, text="Import Waypoints", command=self.importWaypoints)
-        self.importWaypointsButton.grid(row=17, column=1, columnspan=3)
+        self.importWaypointsButton.grid(row=18, column=1, columnspan=3)
         self.exportWaypointsButton = Button(self.root, text="Export Waypoints", command=self.exportWaypoints)
 
         Label(self.root, text="Trajectory", font=("Helvetica", 20)).grid(row=0, column=3, columnspan=2)

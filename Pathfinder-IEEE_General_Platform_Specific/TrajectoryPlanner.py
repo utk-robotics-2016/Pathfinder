@@ -29,10 +29,7 @@ class TrajectoryPlanner:
 
         d_theta = self.config.dest_theta - self.config.src_theta
         for i in range(self.info.length):
-            #if segments[i].position == 0.0 and segments[self.info.length - 1].position == 0.0:
-            #    segments[i].heading = self.config.src_theta
-            #else:
-                segments[i].heading = self.config.src_theta + d_theta * segments[i].position / (segments[self.info.length - 1].position)
+            segments[i].heading = self.config.src_theta + d_theta * segments[i].position / (segments[-1].position)
 
         return segments
 
@@ -60,7 +57,10 @@ class TrajectoryPlanner:
             else:
                 f1_last = f1_buffer[0]
 
-            f1_buffer.append(max(0.0, min(self.info.filter1, f1_last + input_)))
+            if i < len(f1_buffer):
+                f1_buffer[i] = max(0.0, min(self.info.filter1, f1_last + input_))
+            else:
+                f1_buffer.append(max(0.0, min(self.info.filter1, f1_last + input_)))
 
             f2 = 0.0
 

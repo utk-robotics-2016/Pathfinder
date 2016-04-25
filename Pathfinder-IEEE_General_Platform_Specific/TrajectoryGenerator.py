@@ -9,9 +9,9 @@ class TrajectoryGenerator:
     def __init__(self, path, config, fit_type=FitType.CUBIC):
         self.path = path
         self.config = config
-        self.fit = SplineGenerator(fit_type)
+        self.splineGenerator = SplineGenerator(fit_type)
         self.trajectory = Trajectory()
-        self.spline_utils = SplineUtils()
+        self.splineUtils = SplineUtils()
         self.planner = TrajectoryPlanner(config)
         self.prepare()
 
@@ -20,10 +20,13 @@ class TrajectoryGenerator:
             print "Error: TrajectoryGenerator preparation failed: path length is less than 2"
             return
 
+        self.trajectory.spline_list = []
+        self.trajectory.length_list = []
+
         self.trajectory.total_length = 0
         for i in range(len(self.path) - 1):
-            s = self.fit.fit(self.path[i], self.path[i + 1])
-            dist = self.spline_utils.get_arc_length(s, self.config.sample_count)
+            s = self.splineGenerator.fit(self.path[i], self.path[i + 1])
+            dist = self.splineUtils.get_arc_length(s, self.config.sample_count)
             self.trajectory.spline_list.append(s)
             self.trajectory.length_list.append(dist)
             self.trajectory.total_length = self.trajectory.total_length + dist
@@ -33,8 +36,8 @@ class TrajectoryGenerator:
         self.config.dest_theta = self.path[0].angle
 
         self.planner.prepare()
-        self.trajectory.length = self.planner.info.length
 
+        self.trajectory.length = self.planner.info.length
         self.trajectory.path_length = len(self.path)
         self.trajectory.config = self.config
 
@@ -58,9 +61,9 @@ class TrajectoryGenerator:
                 pos_relative = pos - spline_pos_initial
                 if(pos_relative <= spline_lengths[spline_i]):
                     si = splines[spline_i]
-                    percentage = self.spline_utils.get_progress_for_distance(si, pos_relative, self.config.sample_count)
-                    coords = self.spline_utils.get_coords(si, percentage)
-                    segments[i].heading = self.spline_utils.get_angle(si, percentage)
+                    percentage = self.splineUtils.get_progress_for_distance(si, pos_relative, self.config.sample_count)
+                    coords = self.splineUtils.get_coords(si, percentage)
+                    segments[i].heading = self.splineUtils.get_angle(si, percentage)
                     segments[i].x = coords.x
                     segments[i].y = coords.y
                     break
@@ -70,10 +73,13 @@ class TrajectoryGenerator:
                     spline_i = spline_i + 1
                 else:
                     si = splines[path_length - 2]
-                    segments[i].heading = self.spline_utils.get_angle(si, 1.0)
-                    coords = self.spline_utils.get_coords(si, 1.0)
+                    segments[i].heading = self.splineUtils.get_angle(si, 1.0)
+                    coords = self.splineUtils.get_coords(si, 1.0)
                     segments[i].x = coords.x
                     segments[i].y = coords.y
                     break
+
+        splines = []
+        spline_lengths = []
 
         return segments
