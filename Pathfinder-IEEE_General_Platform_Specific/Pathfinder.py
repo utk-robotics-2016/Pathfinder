@@ -12,6 +12,7 @@ from Structs.Waypoint import Waypoint
 from TrajectoryGenerator import TrajectoryGenerator
 from SwerveModifier import SwerveModifier
 from TankModifier import TankModifier
+from SplineGenerator import FitType
 
 
 class DisplayWaypoint:
@@ -29,25 +30,28 @@ class DisplayWaypoint:
         self.theta.trace('w', self.updatePoint)
 
         self.xEntry = Entry(root, textvariable=self.x)
-        self.xEntry.grid(row=18 + index, column=1)
         self.yEntry = Entry(root, textvariable=self.y)
-        self.yEntry.grid(row=18 + index, column=2)
         self.thetaEntry = Entry(root, textvariable=self.theta)
-        self.thetaEntry.grid(row=18 + index, column=3)
-
         self.deleteButton = Button(root, text="-", command=self.delete)
-        self.deleteButton.grid(row=18 + index, column=4)
 
         self.list = list_
         self.index = index
         self.redraw = redraw
 
     def changeIndex(self, index):
-        self.xEntry.grid(row=18 + index, column=1)
-        self.yEntry.grid(row=18 + index, column=2)
-        self.thetaEntry.grid(row=18 + index, column=3)
-        self.deleteButton.grid(row=18 + index, column=4)
         self.index = index
+
+    def changePosition(self, position):
+        self.xEntry.grid(row=18 + position, column=1)
+        self.yEntry.grid(row=18 + position, column=2)
+        self.thetaEntry.grid(row=18 + position, column=3)
+        self.deleteButton.grid(row=18 + position, column=4)
+
+    def removeVisibility(self):
+        self.xEntry.grid_forget()
+        self.yEntry.grid_forget()
+        self.thetaEntry.grid_forget()
+        self.deleteButton.grid_forget()
 
     def updatePoint(self, *args):
         # if the textbox isn't a number don't update
@@ -74,7 +78,7 @@ class Application(Frame):
 
     def __init__(self, master=None):
         self.root = master
-        Frame.__init__(self, master)
+        Frame.__init__(self, master, background="blue")
         # width x height + x_offset + y_offset:
         #self.root.geometry("1000x700+0+0")
         self.createHeaderBar()
@@ -84,6 +88,8 @@ class Application(Frame):
         self.opencv_image_marked = None
 
         self.waypoints = []
+        self.topIndex = 0
+        self.numDisplayRows = 5
 
         self.trajectory_segments = []
         self.tank_left_segments = []
@@ -142,10 +148,15 @@ class Application(Frame):
         if(imageFilename != ""):
             self.openImageButton.grid_forget()
             self.opencv_image = cv2.imread(imageFilename)
+            height, width, channels = self.opencv_image.shape
             cv2.putText(self.opencv_image, "X", (20, 15), cv2.FONT_HERSHEY_PLAIN, 1.0, (0, 0, 255))
             cv2.line(self.opencv_image, (20, 20), (30, 20),  (0, 0, 255), 2)
             cv2.putText(self.opencv_image, "Y", (5, 30), cv2.FONT_HERSHEY_PLAIN, 1.0, (255, 0, 0))
             cv2.line(self.opencv_image, (20, 20), (20, 30),  (255, 0, 0), 2)
+            cv2.line(self.opencv_image, (0, 0), (0, height), (0, 0, 0), 2)
+            cv2.line(self.opencv_image, (0, 0), (width, 0), (0, 0, 0), 2)
+            cv2.line(self.opencv_image, (width, 0), (width, height), (0, 0, 0), 2)
+            cv2.line(self.opencv_image, (0, height), (width, height), (0, 0, 0), 2)
             self.opencv_image_marked = self.opencv_image.copy()
             self.setImage()
             self.updateDraw()
@@ -199,6 +210,54 @@ class Application(Frame):
 
         self.waypoints.append(DisplayWaypoint(x, y, 0.0, self.root, len(self.waypoints), self.waypoints, self.updateDraw))
         self.updateDraw()
+        if(len(self.waypoints) - self.topIndex > self.numDisplayRows):
+            self.topIndex = self.topIndex + self.numDisplayRows
+        self.updateWaypointsList()
+
+    def upWaypoints(self, *args):
+        self.topIndex = self.topIndex - self.numDisplayRows
+        self.updateWaypointsList()
+
+    def downWaypoints(self, *args):
+        self.topIndex = self.topIndex + self.numDisplayRows
+        self.updateWaypointsList()
+
+    def updateWaypointsList(self, *args):
+        for waypoint in self.waypoints:
+            waypoint.removeVisibility()
+        if len(self.waypoints) > self.numDisplayRows:
+            if self.topIndex == 0:
+                for i in range(self.numDisplayRows):
+                    self.waypoints[i].changePosition(i)
+                self.upWaypointsButton.grid_forget()
+                self.downWaypointsButton.grid(row=19 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+                self.clearWaypointsButton.grid(row=20 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+                self.importWaypointsButton.grid(row=21 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+                self.exportWaypointsButton.grid(row=22 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+            elif len(self.waypoints) - self.topIndex > self.numDisplayRows:
+                for i in range(self.topIndex, self.topIndex + self.numDisplayRows):
+                    self.waypoints[i].changePosition(i - self.topIndex + 1)
+                self.upWaypointsButton.grid(row=18, column=1, columnspan=3)
+                self.downWaypointsButton.grid(row=20 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+                self.clearWaypointsButton.grid(row=21 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+                self.importWaypointsButton.grid(row=22 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+                self.exportWaypointsButton.grid(row=23 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+            else:
+                for i in range(self.topIndex, len(self.waypoints)):
+                    self.waypoints[i].changePosition(i - self.topIndex + 1)
+                self.upWaypointsButton.grid(row=18, column=1, columnspan=3)
+                self.downWaypointsButton.grid_forget()
+                self.clearWaypointsButton.grid(row=20 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+                self.importWaypointsButton.grid(row=21 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+                self.exportWaypointsButton.grid(row=22 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+        elif len(self.waypoints) > 0:
+            for i in range(len(self.waypoints)):
+                self.waypoints[i].changePosition(i)
+            self.upWaypointsButton.grid_forget()
+            self.downWaypointsButton.grid_forget()
+            self.clearWaypointsButton.grid(row=20 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+            self.importWaypointsButton.grid(row=21 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
+            self.exportWaypointsButton.grid(row=22 + len(self.waypoints) - self.topIndex, column=1, columnspan=3)
 
     def updateDraw(self, *args):
         error = False
@@ -252,10 +311,6 @@ class Application(Frame):
                         cv2.line(self.opencv_image_marked, p1, p2,  (0, 0, 255), 2)
                     except:
                         pass
-                self.importWaypointsButton.grid(row=20 + len(self.waypoints), column=1, columnspan=3)
-                if len(self.waypoints) > 0:
-                    self.clearWaypointsButton.grid(row=19 + len(self.waypoints), column=1, columnspan=3)
-                    self.exportWaypointsButton.grid(row=21 + len(self.waypoints), column=1, columnspan=3)
             self.updateTrajectory()
             if self.viewTrajectory.get():
                 for i in range(len(self.trajectory_segments) - 1):
@@ -470,7 +525,7 @@ class Application(Frame):
         self.swerve_front_right_segments = []
         self.swerve_back_left_segments = []
         self.swerve_back_right_segments = []
-        if len(self.waypoints) == 0:
+        if len(self.waypoints) < 2:
             return
 
         error = False
@@ -523,8 +578,11 @@ class Application(Frame):
         trajectoryWaypoints = []
         for displayWaypoint in self.waypoints:
             trajectoryWaypoints.append(Waypoint(displayWaypoint.x.get(), displayWaypoint.y.get(), displayWaypoint.theta.get()))
-        
-        generator = TrajectoryGenerator(trajectoryWaypoints, trajectoryConfig)
+
+        if self.splineType.get() == "Cubic":
+            generator = TrajectoryGenerator(trajectoryWaypoints, trajectoryConfig, FitType.CUBIC)
+        elif self.splineType.get() == "Quintic":
+            generator = TrajectoryGenerator(trajectoryWaypoints, trajectoryConfig, FitType.QUINTIC)
         self.trajectory_segments = generator.generate()
 
         errorMessage = ""
@@ -667,6 +725,8 @@ class Application(Frame):
         Label(self.root, text="Y (in)").grid(row=17, column=2)
         Label(self.root, text="Heading (degrees)").grid(row=17, column=3)
 
+        self.upWaypointsButton = Button(self.root, text="Up", command=self.upWaypoints)
+        self.downWaypointsButton = Button(self.root, text="Down", command=self.downWaypoints)
         self.clearWaypointsButton = Button(self.root, text="Clear Waypoints", command=self.clearWaypoints)
         self.importWaypointsButton = Button(self.root, text="Import Waypoints", command=self.importWaypoints)
         self.importWaypointsButton.grid(row=18, column=1, columnspan=3)
@@ -674,6 +734,7 @@ class Application(Frame):
 
         Label(self.root, text="Trajectory", font=("Helvetica", 20)).grid(row=0, column=3, columnspan=2)
         Button(self.root, text="Export Trajectory", command=self.exportTrajectories).grid(row=1, column=3, columnspan=2)
+
 
 root = Tk()
 root.title("Pathfinder")

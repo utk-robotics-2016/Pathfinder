@@ -19,7 +19,7 @@ class TankModifier:
             right = copy.deepcopy(seg)
 
             cos_angle = math.cos(seg.heading)
-            sin_angle = math.cos(seg.heading)
+            sin_angle = math.sin(seg.heading)
 
             left.x = seg.x - (w * sin_angle)
             left.y = seg.y + (w * cos_angle)

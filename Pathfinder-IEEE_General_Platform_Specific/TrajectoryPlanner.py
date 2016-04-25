@@ -14,8 +14,6 @@ class TrajectoryPlanner:
 
         checked_max_v = min(self.config.max_v, (-max_a2 + math.sqrt(max_a2 * max_a2 + 4 * (max_j2 * self.config.max_a * self.config.dest_pos))) / (2 * self.config.max_j))
 
-        print checked_max_v
-
         filter1 = int(math.ceil((checked_max_v / self.config.max_a) / self.config.dt))
         filter2 = int(math.ceil((self.config.max_a / self.config.max_j) / self.config.dt))
 
