@@ -30,7 +30,7 @@ args = vars(ap.parse_args())
 if args['config'] is not None:
     config_file = open(args['config'], "r")
 else:
-    config_file = open("pathplanning_robot_config.json", "r")
+    config_file = open("pathfinder_config.json", "r")
 
 if args['waypoints'] is not None:
     waypoints_file = open(args['waypoints'])
@@ -59,8 +59,10 @@ waypoints = []
 reader = csv.DictReader(waypoints_file)
 for row in reader:
     waypoints.append(Waypoint(float(row['x']), float(row['y']), float(row['theta'])))
-
-generator = TrajectoryGenerator(waypoints, config)#, fit_type=FitType.QUINTIC)
+if config_json['fit_type'] == "Cubic":
+    generator = TrajectoryGenerator(waypoints, config, fit_type=FitType.CUBIC)
+elif config_json['fit_type'] == "QUINTIC":
+    generator = TrajectoryGenerator(waypoints, config, fit_type=FitType.QUINTIC)
 trajectory_segments = generator.generate()
 
 write_trajectory(output_file, trajectory_segments)
