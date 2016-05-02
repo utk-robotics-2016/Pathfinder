@@ -1,0 +1,1217 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ma",
+				"maxVelocity"
+			],
+			[
+				"tr",
+				"trace"
+			],
+			[
+				"up",
+				"updateDraw"
+			],
+			[
+				"col",
+				"column"
+			],
+			[
+				"er",
+				"error"
+			],
+			[
+				"m",
+				"maxAcceleration"
+			],
+			[
+				"ex",
+				"except"
+			],
+			[
+				"cou",
+				"courseWidth"
+			],
+			[
+				"cour",
+				"courseWidth"
+			],
+			[
+				"sw",
+				"swerve_back_right_segments"
+			],
+			[
+				"tank",
+				"tank_right_segments"
+			],
+			[
+				"ask",
+				"asksaveasfilename"
+			],
+			[
+				"exportAll",
+				"exportAllTrajectories"
+			],
+			[
+				"Tr",
+				"Trajectory"
+			],
+			[
+				"swer",
+				"swerve_front_left_segments"
+			],
+			[
+				"swe",
+				"swerve_front_left_segments"
+			],
+			[
+				"ta",
+				"tank_right_segments"
+			],
+			[
+				"whe",
+				"wheelbaseWidth"
+			],
+			[
+				"wheelbase",
+				"wheelbase_width"
+			],
+			[
+				"Wa",
+				"Waypoint"
+			],
+			[
+				"wa",
+				"waypoints"
+			],
+			[
+				"max",
+				"maxVelocity"
+			],
+			[
+				"open",
+				"opencv_image"
+			],
+			[
+				"g",
+				"grid"
+			],
+			[
+				"de",
+				"delete"
+			],
+			[
+				"Di",
+				"DisplayWaypoint"
+			],
+			[
+				"updat",
+				"updateDraw"
+			],
+			[
+				"export",
+				"exportWaypoints"
+			],
+			[
+				"import",
+				"importWaypoints"
+			],
+			[
+				"co",
+				"courseWidth"
+			],
+			[
+				"im",
+				"imageLength"
+			],
+			[
+				"image",
+				"imageWidth"
+			],
+			[
+				"course",
+				"courseWidth"
+			],
+			[
+				"con",
+				"configError"
+			],
+			[
+				"w",
+				"waypoints"
+			],
+			[
+				"vie",
+				"viewTankTrajectory"
+			],
+			[
+				"view",
+				"viewWaypoints"
+			],
+			[
+				"v",
+				"viewSwerveTrajectory"
+			],
+			[
+				"th",
+				"theta"
+			],
+			[
+				"di",
+				"displayWaypoint"
+			],
+			[
+				"op",
+				"opencv_image"
+			],
+			[
+				"del",
+				"deleteButton"
+			],
+			[
+				"y",
+				"yEntry"
+			],
+			[
+				"x",
+				"xEntry"
+			],
+			[
+				"row",
+				"rowspan"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"samp",
+				"sampleCount"
+			],
+			[
+				"max_",
+				"max_velocity"
+			],
+			[
+				"js",
+				"json_file"
+			],
+			[
+				"expo",
+				"exportRobotConfig"
+			],
+			[
+				"tex",
+				"textvariable"
+			],
+			[
+				"imp",
+				"importRobotConfig"
+			],
+			[
+				"View",
+				"viewmenu"
+			],
+			[
+				"ad",
+				"add_cascade"
+			],
+			[
+				"c",
+				"createWidgets"
+			],
+			[
+				"cr",
+				"createHeaderBar"
+			],
+			[
+				"T",
+				"Trajectory"
+			],
+			[
+				"add_",
+				"add_checkbutton"
+			],
+			[
+				"menu",
+				"menubar"
+			],
+			[
+				"f",
+				"filemenu"
+			],
+			[
+				"st",
+				"startY"
+			],
+			[
+				"dr",
+				"drawTrajectory"
+			],
+			[
+				"start",
+				"startX"
+			],
+			[
+				"back",
+				"backRightTrajectory"
+			],
+			[
+				"bac",
+				"backLeftTrajectory"
+			],
+			[
+				"fr",
+				"frontLeftTrajectory"
+			],
+			[
+				"ri",
+				"rightTrajectory"
+			],
+			[
+				"set",
+				"setImage"
+			],
+			[
+				"ori",
+				"originalTrajectoryCheckboxValue"
+			],
+			[
+				"b",
+				"backLeftTrajectory"
+			],
+			[
+				"fron",
+				"frontRightTrajectory"
+			],
+			[
+				"load",
+				"loadTrajectory"
+			],
+			[
+				"righ",
+				"rightTrajectoryFile"
+			],
+			[
+				"lef",
+				"leftTrajectory"
+			],
+			[
+				"loa",
+				"loadTrajectory"
+			],
+			[
+				"r",
+				"right_segments"
+			],
+			[
+				"wri",
+				"write_trajectory"
+			],
+			[
+				"wr",
+				"write_trajectory"
+			],
+			[
+				"out",
+				"output_file"
+			],
+			[
+				"csv",
+				"csvfile"
+			],
+			[
+				"write",
+				"writer"
+			],
+			[
+				"fi",
+				"fieldnames"
+			],
+			[
+				"cs",
+				"csvfile"
+			],
+			[
+				"way",
+				"Waypoint"
+			],
+			[
+				"s",
+				"spline_lengths"
+			],
+			[
+				"l",
+				"last_section"
+			],
+			[
+				"seg",
+				"seg"
+			],
+			[
+				"src",
+				"src_theta"
+			],
+			[
+				"des",
+				"dest_pos"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"t",
+				"trajectory_length"
+			],
+			[
+				"a",
+				"a1_delta"
+			],
+			[
+				"V",
+				"ValueError"
+			],
+			[
+				"e",
+				"except"
+			],
+			[
+				"Tra",
+				"TrajectoryGenerator"
+			],
+			[
+				"fil",
+				"filter1"
+			],
+			[
+				"ope",
+				"opencv_image"
+			],
+			[
+				"front",
+				"frontRightTrajectory"
+			],
+			[
+				"right",
+				"rightTrajectory"
+			],
+			[
+				"left",
+				"leftTrajectory"
+			],
+			[
+				"tra",
+				"trajectory"
+			],
+			[
+				"clear",
+				"clearImage"
+			],
+			[
+				"driv",
+				"drivetrain"
+			],
+			[
+				"d",
+				"drivetrainOption"
+			],
+			[
+				"o",
+				"originalTrajectoryCheckbox"
+			],
+			[
+				"original",
+				"originalTrajectoryCheckbox"
+			],
+			[
+				"dri",
+				"drivetrainOption"
+			],
+			[
+				"Tank",
+				"TankModifier"
+			],
+			[
+				"S",
+				"SwerveModifier"
+			],
+			[
+				"wh",
+				"wheelbaseLength"
+			],
+			[
+				"W",
+				"Width"
+			],
+			[
+				"maxJerk",
+				"maxJerkEntry"
+			],
+			[
+				"D",
+				"Delta"
+			],
+			[
+				"erro",
+				"errorMessage"
+			],
+			[
+				"firs",
+				"first_y"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"ima",
+				"imageWidth"
+			],
+			[
+				"grid",
+				"grid_forget"
+			],
+			[
+				"is",
+				"is_number"
+			],
+			[
+				"len",
+				"lengthEntry"
+			],
+			[
+				"wi",
+				"widthEntry"
+			],
+			[
+				"the",
+				"thetaEntry"
+			],
+			[
+				"save",
+				"saveWaypoints"
+			],
+			[
+				"pa",
+				"pathfinding_config"
+			],
+			[
+				"sa",
+				"sampleCount"
+			],
+			[
+				"wid",
+				"widthEntry"
+			],
+			[
+				"cal",
+				"calculated_value"
+			],
+			[
+				"se",
+				"self"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Pathfinder-Python/README.md",
+			"settings":
+			{
+				"buffer_size": 192,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Pathfinder-Python/TrajectoryGen.py",
+			"settings":
+			{
+				"buffer_size": 4700,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"",
+				"Package Control: Remove Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"la",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"L",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"P",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Pathfinder.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/TrajectoryGenerator.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/TrajectoryPlanner.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/SplineGenerator.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/SplineUtils.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/README.md",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Java/README.md",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/README.md",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/DistanceFollower.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/ConfigGen.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/TrajectoryGen.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/TrajectoryDisplay.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/WaypointGen.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/Segment.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/TrajectoryConfig.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/waypoints.csv",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/trajectory.json",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/TrajectoryInfo.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/Trajectory.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/Waypoint.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/SwerveModifier.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/TankModifier.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/waypoints.json",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/mathutil.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/pathplanning_robot_config.json",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Spline_Generator.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/__init__.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/pathfinder_waypoints.json",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/pathfinder_config.json",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/test.json",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Generator.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/PathfinderGen.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/EncoderFollower.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/swerve.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/tank.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/encoder.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/distance.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/generator.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/Spline.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/TrajectoryCandidate",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Hermite.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/struct.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/hermite.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/TrajectoryInfo",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/waypoint.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/segment.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/coord.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/Structs/spline.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/struct.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/examples/tank_example.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-IEEE_General_Platform_Specific/generator.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/fit/hermite.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/examples/tank.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/generator.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/trajectory.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/examples/swerve.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/enums.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/fit.h",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/modifiers/swerve.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/trajectory.h",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/io.h",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder.h",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/examples/basic.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/trajectory.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/modifiers/swerve.h",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/modifiers/tank.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/followers/encoder.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/followers/encoder.h",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/followers/encoder.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/followers/distance.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/followers/distance.h",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Python/src/Pathfinder.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/template2.txt",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/sensors/linesensor_arrays.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/template1.txt",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/template.json",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/special/arms.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/README.md",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/sensors/i2cencoders.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/sensors/ultrasonics.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/actuators/monsterMotoMotors.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/actuators/servos.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/sensors/switches.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/sensors/linesensors.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/sensors/encoders.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/actuators/monsterMotoMotors",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/sensors/buttons.py",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/command_line/template.txt",
+		"/Volumes/Mac Storage/Documents/git/ArduinoGen/Command Line/generator.py",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/io.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/mathutil.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/src/spline.c",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/spline.h",
+		"/Volumes/Mac Storage/Documents/git/Pathfinder/Pathfinder-Core/include/pathfinder/structs.h",
+		"/Volumes/Mac Storage/Documents/git/utk-robotics-2016/head/spine/ultrasonic.py",
+		"/Applications/Arduino.app/Contents/Java/libraries/I2CEncoder/I2CEncoder.cpp",
+		"/Applications/Arduino.app/Contents/Java/libraries/I2CEncoder/I2CEncoder.h",
+		"/Volumes/Mac Storage/Documents/git/Scouting/RohawkticsScouting/version.properties",
+		"/Volumes/Mac Storage/Documents/git/Scouting/RohawkticsScouting/local.properties",
+		"/Volumes/Mac Storage/Documents/git/utk-robotics-2016/head/imaging/block_detector.py",
+		"/Volumes/Mac Storage/Documents/git/utk-robotics-2016/head/imaging/from head.imaging.block_detector import block_dete.py",
+		"/Volumes/Storage/Dropbox/Mom and me/Resume and CV/cv.tex",
+		"/Volumes/Storage/Mac/Documents/Grad Applications/UTK_PS.tex",
+		"/Volumes/Storage/Mac/Documents/Grad Applications/MIT_SOP.tex",
+		"/Volumes/Storage/Mac/Documents/Grad Applications/Stanford_SOP.tex",
+		"/Users/akmessing1/Documents/git/utk-robotics-2016/head/imaging/color_point.py",
+		"/Users/akmessing1/Documents/git/utk-robotics-2016/head/imaging/block_detector.py",
+		"/Users/akmessing1/Documents/git/utk-robotics-2016/block_detection_calibration.py",
+		"/Users/akmessing1/Documents/git/utk-robotics-2016/utils/block_detection_calibration.py",
+		"/Users/akmessing1/Documents/git/breakout_rl/presentation/main.pdf",
+		"/Users/akmessing1/Dropbox/Mom and me/Resume and CV/cv.tex",
+		"/Users/akmessing1/Dropbox/Mom and me/Resume and CV/res1.tex",
+		"/Users/akmessing1/Documents/Grad Applications/CMU_SOP.tex",
+		"/Users/akmessing1/Documents/Grad Applications/Stanford_SOP.tex",
+		"/Users/akmessing1/Documents/Grad Applications/CMU_SOP.text",
+		"/Users/akmessing1/Documents/git/ut_cpas_embedded/simulate.c",
+		"/Users/akmessing1/Documents/git/ut_cpas_embedded/cpas_client_v3.c",
+		"/Users/akmessing1/Documents/git/Scouting/111_wildrank-android-v2/app/src/main/java/org/wildstang/wildrank/androidv2/fragments/TeamSummariesStackFragment.java",
+		"/Users/akmessing1/Documents/git/Scouting/111_wildrank-android-v2/app/src/main/java/org/wildstang/wildrank/androidv2/adapters/TeamSummariesFragmentPagerAdapter.java",
+		"/Users/akmessing1/Documents/git/Scouting/111_wildrank-android-v2/app/src/main/java/org/wildstang/wildrank/androidv2/fragments/TeamSummariesMainFragment.java",
+		"/Users/akmessing1/Documents/git/Scouting/111_wildrank-android-v2/app/src/main/java/org/wildstang/wildrank/androidv2/views/data/StackDataView.java",
+		"/Users/akmessing1/Documents/Grad Applications/Abidi_rec.tex",
+		"/Users/akmessing1/Documents/git/517_final_project/presentation.tex",
+		"/Users/akmessing1/Documents/git/517_final_project/ALE/test.py",
+		"/Users/akmessing1/Documents/git/breakout_rl/presentation/main.tex",
+		"/Users/akmessing1/Documents/git/breakout_rl/src/td-impl/test.py",
+		"/Users/akmessing1/Desktop/test.py",
+		"/Users/akmessing1/Documents/git/utk-robotics-2016/head/spine/ultrasonic.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"front",
+			"right",
+			"front_left",
+			"left",
+			"col",
+			"sensor_dict",
+			"sensor_list",
+			"add_sensor",
+			"switche",
+			"  ",
+			"_",
+			"\\quad",
+			"\\:",
+			"_",
+			"dist1",
+			"dist4",
+			"dist1",
+			"dist4",
+			"dist1",
+			"sensors[3]",
+			"sensors[0]",
+			"senssors[0]",
+			"atan2(",
+			"left",
+			"trap",
+			"keyframe",
+			"∧",
+			"quad",
+			"\n",
+			"getB",
+			"getG",
+			"getR",
+			"getRGBColor",
+			"getV",
+			"getS",
+			"getH",
+			"alib",
+			"lf",
+			"y",
+			"get",
+			"('/"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"back",
+			"frontRight",
+			"backLeft",
+			"frontLeft",
+			"front_left",
+			"right",
+			"column",
+			"device_dict",
+			"linesensors_list",
+			"switches_list",
+			"add",
+			" button",
+			" ",
+			"\\_",
+			"\\;",
+			" \\quad ",
+			"\\:",
+			"dist3",
+			"dist2",
+			"dist3",
+			"dist2",
+			"dist3",
+			"sensors[1]",
+			"sensors[2]",
+			"math.degrees(math.atan2(",
+			"right",
+			"get_b",
+			"get_g",
+			"get_r",
+			"get_rgb_color",
+			"get_v",
+			"get_s",
+			"get_h",
+			"LineFollowers",
+			"p",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Pathfinder-Python/README.md",
+					"settings":
+					{
+						"buffer_size": 192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								192,
+								192
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": "load-save",
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Pathfinder-Python/TrajectoryGen.py",
+					"settings":
+					{
+						"buffer_size": 4700,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2666,
+								2666
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": "load-save",
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 781.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.467703154593,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.build|/Users/akmessing1/Documents/Arduino/libraries/PID|1442513141.35":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442512208.03":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442512262.28":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442512303.86":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442512313.63":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442512710.56":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442513060.26":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442513439.74":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442513451.9":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442513465.33":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442513626.85":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442533305.31":
+	{
+		"height": 100.0
+	},
+	"output.build|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442533333.03":
+	{
+		"height": 100.0
+	},
+	"output.exec":
+	{
+		"height": 151.0
+	},
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"output.latex_log":
+	{
+		"height": 100.0
+	},
+	"output.upload|/Users/akmessing1/Documents/git/utk-robotics-2016/torso/software/wheels_torso/sketch|1442514968.4":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true
+}
