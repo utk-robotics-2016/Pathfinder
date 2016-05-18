@@ -8,8 +8,8 @@ int pathfinder_generate(TrajectoryCandidate *c, Segment *segments);
 void pf_trajectory_copy(Segment *src, Segment *dest, int length);
 
 TrajectoryInfo pf_trajectory_prepare(TrajectoryConfig c);
-void pf_trajectory_create(TrajectoryInfo info, TrajectoryConfig c, Segment *seg);
-void pf_trajectory_fromSecondOrderFilter(int filter_1_l, int filter_2_l, 
+int pf_trajectory_create(TrajectoryInfo info, TrajectoryConfig c, Segment *seg);
+int pf_trajectory_fromSecondOrderFilter(int filter_1_l, int filter_2_l, 
         double dt, double u, double v, double impulse, int len, Segment *t);
 
 #endif
