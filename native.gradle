@@ -21,6 +21,10 @@ subprojects {
             }
             
             toolChains {
+                visualCpp(VisualCpp) {
+                    
+                }
+                
                 gcc(Gcc) {
                     target("arm") {
                         cCompiler.executable = compilerPrefix + cCompiler.executable
