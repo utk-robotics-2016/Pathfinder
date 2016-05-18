@@ -46,7 +46,7 @@ int pathfinder_generate(TrajectoryCandidate *c, Segment *segments) {
     if (trajectory_status < 0) return trajectory_status;
     
     int spline_i = 0;
-    double spline_pos_initial, splines_complete;
+    double spline_pos_initial = 0, splines_complete = 0;
     
     int i;
     for (i = 0; i < trajectory_length; ++i) {

@@ -95,8 +95,6 @@ int pf_trajectory_fromSecondOrderFilter(int filter_1_l, int filter_2_l,
         }
         f2 = f2 / filter_1_l;
 
-        Segment sec;
-        t[i] = sec;
         t[i].velocity = f2 / filter_2_l * v;
 
         t[i].position = (last_section.velocity + t[i].velocity) / 2.0 * dt + last_section.position;
