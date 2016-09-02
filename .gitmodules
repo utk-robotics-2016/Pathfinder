@@ -1,0 +1,3 @@
+[submodule "Pathfinder-Python"]
+	path = Pathfinder-Python
+	url = https://github.com/utk-robotics-2017/Pathfinder-Python.git
