@@ -79,4 +79,4 @@ To see the usage for each language variation of the API, see the README in their
 | -------- | ------ |
 | C        | [Pathfinder-Core](Pathfinder-Core/) |
 | Java     | [Pathfinder-Java](Pathfinder-Java/) |
-| Python   | [Pathfinder-Python]](Pathfinder-Python/) |
+| Python   | [Pathfinder-Python](Pathfinder-Python/) |
